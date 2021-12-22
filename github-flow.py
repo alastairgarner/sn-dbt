@@ -2,6 +2,7 @@
 
 from prefect import task, Flow
 from prefect.storage import GitHub
+from prefect.run_configs import DockerRun
 
 
 @task
@@ -14,10 +15,13 @@ def print_data(data):
     print(data)
 
 
-with Flow("example") as flow:
+with Flow("github-flow") as flow:
     data = get_data()
     print_data(data)
 
+flow.run_config = DockerRun(
+    image="prefecthq/prefect:latest-python3.8"
+)
 flow.storage = GitHub(
     repo="alastairgarner/sn-dbt",                            # name of repo
     path="github-flow.py",                    # location of flow file in repo
