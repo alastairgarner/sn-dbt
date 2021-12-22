@@ -1,0 +1,105 @@
+version: 2
+
+sources:
+  - name: prod_analytics
+    description: Second Nature production analytics database
+    database: postgres
+    schema: analytics_raw
+    loader: airbyte
+    loaded_at_field: _airbyte_emitted_at
+    freshness:
+      warn_after:
+        count: 1
+        period: day
+      error_after:
+        count: 3
+        period: day
+    quoting:
+      database: true
+      schema: true
+      identifier: true
+    tables:
+      - name: _airbyte_raw_ourpath_prod_invoices
+        identifier: _airbyte_raw_ourpath_prod_invoices
+        description: Invoices data
+        external:
+          collection_name: invoices
+        columns:
+          - name: _airbyte_ab_id
+            description: Unique row identifier
+            tests:
+              - unique
+              - not_null
+          - name: _airbyte_data
+            description: Raw document data
+            tests:
+              - unique
+              - not_null
+          - name: _airbyte_emitted_at
+            description: Timestamp of data load time
+            tests:
+              - unique
+              - not_null
+      - name: _airbyte_raw_ourpath_prod_plans
+        identifier: _airbyte_raw_ourpath_prod_plans
+        description: Plans data
+        external:
+          collection_name: plans
+        columns:
+          - name: _airbyte_ab_id
+            description: Unique row identifier
+            tests:
+              - unique
+              - not_null
+          - name: _airbyte_data
+            description: Raw document data
+            tests:
+              - unique
+              - not_null
+          - name: _airbyte_emitted_at
+            description: Timestamp of data load time
+            tests:
+              - unique
+              - not_null
+      - name: _airbyte_raw_ourpath_prod_subscriptions
+        identifier: _airbyte_raw_ourpath_prod_subscriptions
+        description: Subscriptions data
+        external:
+          collection_name: subscriptions
+        columns:
+          - name: _airbyte_ab_id
+            description: Unique row identifier
+            tests:
+              - unique
+              - not_null
+          - name: _airbyte_data
+            description: Raw document data
+            tests:
+              - unique
+              - not_null
+          - name: _airbyte_emitted_at
+            description: Timestamp of data load time
+            tests:
+              - unique
+              - not_null
+      - name: _airbyte_raw_ourpath_prod_viewusers
+        identifier: _airbyte_raw_ourpath_prod_viewusers
+        description: View users data
+        external:
+          collection_name: viewusers
+        columns:
+          - name: _airbyte_ab_id
+            description: Unique row identifier
+            tests:
+              - unique
+              - not_null
+          - name: _airbyte_data
+            description: Raw document data
+            tests:
+              - unique
+              - not_null
+          - name: _airbyte_emitted_at
+            description: Timestamp of data load time
+            tests:
+              - unique
+              - not_null

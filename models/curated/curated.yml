@@ -1,0 +1,9 @@
+version: 2
+
+models:
+  - name: view_successful_transactions
+    config:
+      enabled: true
+      materialized: view
+    docs:
+      show: true

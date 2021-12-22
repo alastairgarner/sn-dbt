@@ -1,0 +1,30 @@
+version: 2
+
+models:
+  - name: view_users
+    config:
+      enabled: true
+      materialized: view
+    docs:
+      show: true
+
+  - name: view_transactions
+    config:
+      enabled: true
+      materialized: view
+    docs:
+      show: true
+
+  - name: view_plans
+    config:
+      enabled: true
+      materialized: view
+    docs:
+      show: true
+
+  - name: view_subscriptions
+    config:
+      enabled: true
+      materialized: view
+    docs:
+      show: true

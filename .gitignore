@@ -1,0 +1,4 @@
+data/
+dbt_packages/
+logs/
+services/
